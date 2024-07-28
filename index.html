@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LitberrY的个人引导页</title>
+    <style>
+        /* 内嵌CSS样式 */
+        body, h3, p {
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color:  #343a40;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .profile img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+        .website-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 15px;
+        }
+        .website-block {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .website-block:hover {
+            transform: translateY(-5px);
+        }
+        footer {
+            background-color:  #007bff;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .translucent-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        // 内嵌JS脚本
+        document.addEventListener('DOMContentLoaded', function() {
+            var blocks = document.querySelectorAll('.website-block');
+            blocks.forEach(function(block) {
+                block.addEventListener('click', function() {
+                    window.location.href = this.dataset.url; // 使用data-url属性跳转
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- 顶栏区域 -->
+    <header>
+        <div class="nav">
+            <a href=" ">关于我</a >
+            <a href="https://sino.rth10.com/LitberrY/uid166416646.html">B站</a >
+            <a href="https://sino.rth10.com/lx.html">联系我</a >
+        </div>
+        <div class="profile">
+            <a href="https://sm.ms/image/53hUxXo7vtq41PH" target="_blank">< img src="https://s2.loli.net/2024/06/06/53hUxXo7vtq41PH.png" ></a >
+        </div>
+    </header>
+
+</body>
+</html>
+<h1>&#12288</h1>
+
+    <!-- 网站列表区域，点击跳转 -->
+    <main class="website-list">
+        <div class="website-block" data-url="https://sino.rth10.com/brs.html">
+            <h3>G2²起始页</h3>
+            <p>简洁的浏览器主页</p >
+        </div>
+        <div class="website-block" data-url="https://sino.rth10.com/dh.html">
+            <h3>G2²网址导航</h3>
+            <p>一个简洁的网址导航网站</p >
+        </div>
+        <div class="website-block" data-url="https://sino.rth10.com/lithub.web.html">
+            <h3>LitHub</h3>
+            <p>简洁的源码分享平台</p >
+        </div>
+        <div class="website-block" data-url="https://sino.rth10.com/lithtml.html">
+            <h3>LitEditor</h3>
+            <p>在线HTML代码编辑器</p >
+        </div>
+<div class="website-block" data-url="https://sino.rth10.com/Check.html">
+            <h3>LitCheck</h3>
+            <p>浏览器信息检查</p >
+        </div>
+<div class="website-block" data-url="https://sino.rth10.com/binggw.html">
+            <h3>LitBing</h3>
+            <p>必应精简版</p >
+        </div>
+    <!-- 更多网站块... -->
+    </main>
+    </body>
+ </html>
+    <head>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+.search-box {
+  position: relative;
+  width: 300px;
+  margin: -450px auto -100px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 15px 15px;
+  border: none;
+  outline: none;
+  background-color: #f9f9f9;
+  border-radius: 40px;
+  transition: width 0.4s ease-in-out;
+}
+
+.search-box button {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+  top: 60px;
+  right: -300px;
+  width: 300px;
+  height: calc(100vh - 60px);
+  background-color: #f1f1f1;
+  transition: right 0.3s;
+  z-index: 100;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+.category {
+  margin-top: 120px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+  margin: 10px;
+  transition: box-shadow 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.footer {
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer a {
+  color: #333;
+  text-decoration: none;
+  margin: 0 10px;
+}
+</style>
+<script>
+document.querySelector('.toggle-sidebar').addEventListener('click', function() {
+  document.querySelector('.sidebar').classList.toggle('open');
+});
+
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    e.preventDefault();
+    console.log('Clicked on:', this.href);
+  });
+});
+</script>
+<div class="search-box">
+  <input type="text" placeholder="搜索...">
+  <button>🔍</button>
+
+
+<p>  </p >
+</div>
+<div class="footer">
+  <p>©&#32 2023-2024 LIT团队｜LitberrY的个人引导页
+  <p>友情链接：<a href="https://sino.rth10.com/LitberrY/uid1564896.html">极光软件</a > <a href="https://sino.rth10.com/binggw.html">LitBing</a ></p >
+</div>
+
+</body>
+</html>
