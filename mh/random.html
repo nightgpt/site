@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>demo</title>
+<style>
+  body {
+    font-family: 'Google Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f5f5f5;
+  }
+  .quote-container {
+    border-radius: 28px;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    background-color: white;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .quote-text {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  .quote-author {
+    font-size: 0.9em;
+    color: #757575;
+  }
+  .button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .button {
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    margin: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+  #new-quote {
+    background-color: #4CAF50;
+  }
+  #favorite-quote {
+    background-color: #F44336;
+  }
+  #show-favorites {
+    background-color: #FF9800;
+  }
+  #favorites {
+    display: none;
+    margin-top: 20px;
+    animation: slideDown 0.5s;
+  }
+  @keyframes slideDown {
+    from {
+      height: 0;
+      opacity: 0;
+    }
+    to {
+      height: auto;
+      opacity: 1;
+    }
+  }
+  .favorite-item {
+    background-color: #e0e0e0;
+    border-radius: 18px;
+    padding: 10px;
+    margin-bottom: 5px;
+    position: relative;
+    text-align: left;
+  }
+  .delete-favorite {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+  }
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.delete-favorite:hover {
+  color: red;
+}
+body {
+    background-color: #ffeee3;
+}
+
+</style>
+</head>
+<body>
+<h1>随机弱智语录</h1>
+<div class="quote-container" id="quote-box">
+  <div class="quote-text" id="quote-text">挂号中...</div>
+  <div class="quote-author" id="quote-author"></div>
+</div>
+<div class="button-container">
+  <button class="button" id="new-quote">换一个</button>
+  <button class="button" id="favorite-quote">收藏</button>
+  <button class="button" id="show-favorites">收藏夹</button>
+</div>
+<div id="favorites">
+  <h2>收藏夹</h2>
+  <div id="favorite-list"></div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const quotes = [
+    { text: "如果USA真的很好，那么为什么会有USB?", author: "Win98Pro" },
+    { text: "问：什么蜜蜂（Bee）不会飞？答：科比", author: "Win98Pro" },
+       { text: "腾讯真奇怪，好多软件都可以用微信登录，唯独微信不可以 ，我要跟官方好好反应一下", author: "至高神" },
+    { text: "困扰已久的难题，用脑思考叫作动脑。但是我的脑子明明没有移动，那么为什么要叫作动脑？叫法 好神奇哇，究竟为什么", author: "狂の人" },
+       { text: "出太阳的时候恰好下雨了请问我应该带遮阳伞还是雨伞", author: "益阳勇" },
+    { text: "敬酒不吃吃罚酒，难道酒能吃吗", author: "酱紫剪" },
+       { text: "教育算是一场对于学生的艾斯爱慕吗", author: "爱摸鱼的咸鱼" },
+    { text: "都说黑色吸热，为什么我的影子在外面晒了那么久，还没有周围的水泥地板温度高", author: "笑" },
+       { text: "呼吸很累的话，不呼吸不就不累了吗？对吗？", author: "Rabbit" },
+    { text: "地狱对于抖M来说，算不算天堂？", author: "海绵宝宝思考尸" },
+  ];
+
+  let currentQuote = {};
+  let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+  function getRandomQuote() {
+    const index = Math.floor(Math.random() * quotes.length);
+    return quotes[index];
+  }
+
+  function displayQuote() {
+    currentQuote = getRandomQuote();
+    document.getElementById('quote-text').innerText = currentQuote.text;
+    document.getElementById('quote-author').innerText = `- ${currentQuote.author}`;
+  }
+
+  function addFavorite() {
+    if (!favorites.some(favorite => favorite.text === currentQuote.text)) {
+      favorites.push(currentQuote);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      displayFavorites();
+    }
+  }
+
+  function displayFavorites() {
+    const favoritesList = document.getElementById('favorite-list');
+    favoritesList.innerHTML = '';
+    favorites.forEach((favorite, index) => {
+      const item = document.createElement('div');
+      item.className = 'favorite-item';
+      item.innerHTML = `<span>${favorite.text}</span> - <em>${favorite.author}</em><span class="delete-favorite" onclick="deleteFavorite(${index})">X</span>`;
+      favoritesList.appendChild(item);
+    });
+  }
+
+  function deleteFavorite(index) {
+    favorites.splice(index, 1);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    displayFavorites();
+  }
+
+  function toggleFavorites() {
+    const favoritesDiv = document.getElementById('favorites');
+    favoritesDiv.style.display = favoritesDiv.style.display === 'none' ? 'block' : 'none';
+    if (favoritesDiv.style.display === 'block') {
+      favoritesDiv.style.animation = 'slideDown 0.5s';
+    }
+  }
+
+  document.getElementById('new-quote').addEventListener('click', displayQuote);
+  document.getElementById('favorite-quote').addEventListener('click', addFavorite);
+  document.getElementById('show-favorites').addEventListener('click', toggleFavorites);
+
+  
+  displayQuote();
+
+  displayFavorites();
+});
+
+</script>
+</body>
+</html>
